@@ -1,0 +1,13 @@
+*.sw*
+.env
+
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn.lock
+public/
+
+.sass-cache/
+
+public/bundle/
+public/styleguide/
