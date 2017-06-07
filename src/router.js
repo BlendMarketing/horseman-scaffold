@@ -2,13 +2,14 @@
 import React from 'react';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route, Switch } from 'react-router-dom';
-import { ResourceProvider, ResourcesProvider } from 'horseman.js';
+import { ResourceProvider } from 'horseman.js';
+import { Link } from 'react-router-dom';
 
 import Home from './containers/Home';
 import NoMatch from './containers/NoMatch';
 
-import BlogPost from './containers/BlogPost';
-import BlogList from './containers/BlogList';
+import BlogHomePage from './containers/BlogHomePage';
+import PostPage from './containers/PostPage';
 
 const Router = ({ history }) => (
   <ConnectedRouter history={history}>
@@ -23,12 +24,16 @@ const Router = ({ history }) => (
           exact
           path="/blog/"
           render={({match}) =>{
-            return(<ResourcesProvider
+            return(<ResourceProvider
               endpoint="http://wp.horseman.io/wp-json/wp/v2/posts"
               endpointVars={match.params}
-              render={resources =>{
-              return(
-                <BlogList resources={resources} />
+              render={resource =>{
+                console.log("resource",resource);
+                if(resource.data.loading){
+                  return(<div />);
+                }
+                return(
+                  <BlogHomePage posts={resource.data} />
                 )}
               }
             />)
@@ -42,8 +47,11 @@ const Router = ({ history }) => (
               endpoint="http://wp.horseman.io/wp-json/wp/v2/posts/:id"
               endpointVars={match.params}
               render={resource =>{
+                if(resource.data.loading){
+                  return(<div />);
+                }
               return(
-                <BlogPost resource={resource} />
+                  <PostPage post={resource.data} />
                 )}
               }
             />)
