@@ -9,10 +9,10 @@ module.exports = function (config) {
         browsers: ['PhantomJS'],
         frameworks: ['mocha'],
         files: [
-            {pattern: './src/**/*.spec.js', watched: false, included: true, served: true}
+            {pattern: './src/**/*.spec.js*', watched: false, included: true, served: true}
         ],
         preprocessors: {
-            './src/**/*.spec.js': ['webpack', 'sourcemap']
+            './src/**/*.spec.js*': ['webpack', 'sourcemap']
         },
         reporters: ['mocha'],
         webpack: Object.assign(webpackConfig, {

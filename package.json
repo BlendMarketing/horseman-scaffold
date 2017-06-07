@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack-dev-server --inline --hot --host 0.0.0.0",
-    "styleguide": "styleguidist build",
+    "styleguide": "styleguidist server",
     "test": "karma start --single-run",
     "test-watch": "karma start --run-once",
     "lint": "eslint ./src"
