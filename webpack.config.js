@@ -21,7 +21,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules(?!\/horseman.js)/,
         use: 'babel-loader',
       },
       {
