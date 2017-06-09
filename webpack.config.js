@@ -69,6 +69,9 @@ module.exports = {
     public: 'webpack:8080',
     host: 'webpack',
     port: 8080,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
     watchOptions: {
       poll: 1000,
     },

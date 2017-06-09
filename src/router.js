@@ -3,8 +3,8 @@ import React from 'react';
 import { ConnectedRouter } from 'react-router-redux';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from './containers/Home';
-import NoMatch from './containers/NoMatch';
+import Home from './components/templates/Home';
+import NoMatch from './components/templates/NoMatch';
 
 const Router = ({ history }) => (
   <ConnectedRouter history={history}>
