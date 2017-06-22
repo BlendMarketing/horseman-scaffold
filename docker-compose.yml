@@ -9,14 +9,14 @@ services:
     ports:
       - 80
     environment:
-      - VIRTUAL_HOST={hostname}
+      - VIRTUAL_HOST=example.com
     volumes:
       - .:/app:rw
   styleguide:
-    image: blendmarketing/webpack
+    image: blendmarketing/styleguide
     ports:
       - 6060
     environment:
-      - VIRTUAL_HOST={hostname}
+      - VIRTUAL_HOST=styleguide.example.com
     volumes:
       - .:/app:rw
