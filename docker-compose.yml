@@ -1,0 +1,30 @@
+version: "3"
+networks:
+  default:
+    external:
+      name: dockerbox
+services:
+  web:
+    image: nginx
+    ports:
+      - 80
+    environment:
+      - VIRTUAL_HOST=onboard.io
+    volumes:
+      - ./public:/usr/share/nginx/html:rw
+  webpack:
+    build: github.com/BlendMarketing/docker-webpack
+    ports:
+      - 8080
+    environment:
+      - VIRTUAL_HOST=webpack.onboard.io
+    volumes:
+      - .:/app:rw
+  styleguide:
+    build: github.com/BlendMarketing/docker-styleguide
+    ports:
+      - 6060
+    environment:
+      - VIRTUAL_HOST=styleguide.onboard.io
+    volumes:
+      - .:/app:rw

@@ -71,7 +71,8 @@ module.exports = {
   devServer: {
     publicPath: '/',
     public: 'webpack:8080',
-    host: 'webpack',
+    host: '0.0.0.0',
+    disableHostCheck: true,
     port: 8080,
     headers: {
       "Access-Control-Allow-Origin": "*",
