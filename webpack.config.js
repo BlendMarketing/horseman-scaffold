@@ -7,6 +7,8 @@
  * paramater.
  */
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
   cache: true,
@@ -57,7 +59,9 @@ module.exports = {
       'node_modules',
     ],
   },
-  plugins: [],
+  plugins: [
+    new HtmlWebpackPlugin(),
+  ],
   output: {
     path: path.join(__dirname, 'public/bundle'),
     publicPath: 'http://webpack:8080/',

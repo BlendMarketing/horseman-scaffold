@@ -9,6 +9,17 @@ const StyledIntro = styled.div`
   //text-align: center;
   color: #3cf;
   font-family: 'Open Sans';
+  > a {
+    font-size: 1.2em;
+    color: white;
+    &:visited {
+      color: white;
+    }
+    &:hover {
+      color: #95a3a3;
+    }
+
+  }
   > img {
     width: 5em;
   }
@@ -18,6 +29,7 @@ const Intro = () => (
   <StyledIntro>
     <img src="http://blendimc.com/design/images/logo.svg" alt="Blend Marketing Logo" />
     <h1>Welcome to Horseman</h1>
+    <a href="https://github.com/BlendMarketing/horseman-scaffold/blob/master/docs/index.md">View the docs</a>
   </StyledIntro>
 );
 
