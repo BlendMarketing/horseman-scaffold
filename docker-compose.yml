@@ -4,20 +4,12 @@ networks:
     external:
       name: dockerbox
 services:
-  web:
-    image: nginx
-    ports:
-      - 80
-    environment:
-      - VIRTUAL_HOST=horseman.io
-    volumes:
-      - ./public:/usr/share/nginx/html:rw
   webpack:
     build: github.com/BlendMarketing/docker-webpack
     ports:
-      - 8080
+      - 80
     environment:
-      - VIRTUAL_HOST=webpack.horseman.io
+      - VIRTUAL_HOST={hostname}
     volumes:
       - .:/app:rw
   styleguide:
@@ -25,6 +17,6 @@ services:
     ports:
       - 6060
     environment:
-      - VIRTUAL_HOST=styleguide.horseman.io
+      - VIRTUAL_HOST={hostname}
     volumes:
       - .:/app:rw

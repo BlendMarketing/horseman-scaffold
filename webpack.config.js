@@ -64,16 +64,15 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'public/bundle'),
-    publicPath: 'http://webpack:8080/',
+    publicPath: '/',
     filename: '[name].bundle.js',
     sourceMapFilename: '[file].map',
   },
   devServer: {
     publicPath: '/',
-    public: 'webpack:8080',
     host: '0.0.0.0',
     disableHostCheck: true,
-    port: 8080,
+    port: 80,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
