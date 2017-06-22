@@ -5,7 +5,7 @@ networks:
       name: dockerbox
 services:
   webpack:
-    build: github.com/BlendMarketing/docker-webpack
+    image: blendmarketing/webpack
     ports:
       - 80
     environment:
@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/app:rw
   styleguide:
-    build: github.com/BlendMarketing/docker-styleguide
+    image: blendmarketing/webpack
     ports:
       - 6060
     environment:
