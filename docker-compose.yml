@@ -9,7 +9,7 @@ services:
     ports:
       - 80
     environment:
-      - VIRTUAL_HOST=onboard.io
+      - VIRTUAL_HOST=horseman.io
     volumes:
       - ./public:/usr/share/nginx/html:rw
   webpack:
@@ -17,7 +17,7 @@ services:
     ports:
       - 8080
     environment:
-      - VIRTUAL_HOST=webpack.onboard.io
+      - VIRTUAL_HOST=webpack.horseman.io
     volumes:
       - .:/app:rw
   styleguide:
@@ -25,6 +25,6 @@ services:
     ports:
       - 6060
     environment:
-      - VIRTUAL_HOST=styleguide.onboard.io
+      - VIRTUAL_HOST=styleguide.horseman.io
     volumes:
       - .:/app:rw
