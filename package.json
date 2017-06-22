@@ -1,8 +1,4 @@
 {
-  "name": "horseman-scaffold",
-  "version": "1.0.0-alpha1",
-  "description": "Scaffolding for Horseman projects",
-  "author": "Jared Meyering <jared.meyering@gmail.com>",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
