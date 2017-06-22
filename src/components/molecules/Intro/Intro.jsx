@@ -29,7 +29,7 @@ const Intro = () => (
   <StyledIntro>
     <img src="http://blendimc.com/design/images/logo.svg" alt="Blend Marketing Logo" />
     <h1>Welcome to Horseman</h1>
-    <a href="https://github.com/BlendMarketing/horseman-scaffold/blob/master/docs/index.md">View the docs</a>
+    <a target="_blank" href="https://github.com/BlendMarketing/horseman-scaffold/blob/master/docs/index.md">View the docs</a>
   </StyledIntro>
 );
 
