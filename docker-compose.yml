@@ -10,12 +10,14 @@ services:
       - 80
     environment:
       - VIRTUAL_HOST=example.com
+    restart: always
     volumes:
       - .:/app:rw
   styleguide:
     image: blendmarketing/styleguide
     ports:
       - 6060
+    restart: always
     environment:
       - VIRTUAL_HOST=styleguide.example.com
     volumes:
