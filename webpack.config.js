@@ -60,7 +60,15 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: require('html-webpack-template'),
+      appMountId: 'root',
+      mobile: true,
+      links: [
+        'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700',
+      ],
+    }),
   ],
   output: {
     path: path.join(__dirname, 'public/bundle'),

@@ -12,8 +12,6 @@ import configureStore from '../store/configureStore';
 
 const history = createHistory();
 const initialState = {
-  horsemanEntries: {},
-  horsemanCollections: {},
 };
 
 const store = configureStore(initialState, history);

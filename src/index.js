@@ -34,7 +34,7 @@ const App = () => (
 
 ReactDOM.render(
   App(),
-  document.body,
+  document.getElementById('root'),
 );
 
 
@@ -43,7 +43,7 @@ if (module.hot) {
   module.hot.accept('./router', () => {
     ReactDOM.render(
       App(),
-      document.body,
+      document.getElementById('root'),
     );
   });
 }
