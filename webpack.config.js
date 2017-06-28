@@ -80,6 +80,7 @@ module.exports = {
     publicPath: '/',
     host: '0.0.0.0',
     disableHostCheck: true,
+    historyApiFallback: true,
     port: 80,
     headers: {
       "Access-Control-Allow-Origin": "*",
