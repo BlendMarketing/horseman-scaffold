@@ -6,6 +6,7 @@ var webpackConfig = require('./webpack.config.js');
 
 module.exports = function (config) {
     config.set({
+        failOnEmptyTestSuite: false,
         browsers: ['PhantomJS'],
         frameworks: ['mocha'],
         files: [
