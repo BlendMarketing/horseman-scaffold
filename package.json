@@ -6,7 +6,7 @@
     "styleguide": "styleguidist server",
     "test": "karma start --single-run",
     "test-watch": "karma start --run-once",
-    "lint": "eslint ./src"
+    "lint": "eslint './src/**/*.js*'"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
@@ -16,6 +16,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "eslint-import-resolver-webpack": "^0.8.3",
     "file-loader": "^0.11.1",
     "history": "^4.6.1",
     "horseman-cli": "^1.0.0",

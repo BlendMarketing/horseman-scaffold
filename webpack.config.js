@@ -57,6 +57,7 @@ module.exports = {
     extensions: ['.webpack.js', '.js', '.json', '.jsx'],
     modules: [
       'node_modules',
+      path.resolve(__dirname, 'src'),
     ],
   },
   plugins: [

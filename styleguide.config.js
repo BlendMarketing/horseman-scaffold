@@ -28,6 +28,10 @@ module.exports = {
         // Registed the styleguide wrapper
         'rsg-components/Wrapper': path.join(__dirname, 'src/styleguide/Wrapper'),
       },
+      modules: [
+        'node_modules',
+        path.resolve(__dirname, 'src'),
+      ],
     },
   }),
 };
