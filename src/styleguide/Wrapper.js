@@ -4,11 +4,13 @@
  * state and router information when generating our styleguide.
  */
 import React from 'react';
-import { ConnectedRouter } from 'react-router-redux';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
+import { ThemeProvider } from 'styled-components';
 
-import configureStore from '../store/configureStore';
+import theme from 'themes/main';
+
+import configureStore from 'store/configureStore';
 
 const history = createHistory();
 const initialState = {
@@ -17,11 +19,11 @@ const initialState = {
 const store = configureStore(initialState, history);
 
 const Wrapper = ({ children }) => (
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
       { children }
-    </ConnectedRouter>
-  </Provider>
+    </Provider>
+  </ThemeProvider>
 );
 
 export default Wrapper;

@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/app
+    docker:
+      - image: marcblend/docker-circleci
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          key: node_modules-{{ .Branch }}-{{ checksum "package.json" }}
+      - run: |
+          docker create -v /app --name appdata alpine:3.4 /bin/true
+          docker cp . appdata:/app
+          docker run --volumes-from appdata blendmarketing/webpack yarn install
+          docker run --volumes-from appdata blendmarketing/webpack yarn build
+          docker run --volumes-from appdata blendmarketing/webpack yarn styleguide:build
+      - run: |
+          docker cp appdata:/app/public .
+          docker cp appdata:/app/node_modules .
+      - save_cache:
+          key: node_modules-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+
+      - run: docker run --volumes-from appdata blendmarketing/webpack yarn lint
+      - run: docker run --volumes-from appdata blendmarketing/webpack yarn test
+
+      - run: docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 .
+      - run: docker run -d -p 80:80 $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+      - run: docker run --rm byrnedo/alpine-curl 172.17.0.1 | grep "html"
+      - run: ./deploy.sh
+workflows:
+  version: 2
+  build-test-and-deploy:
+    jobs:
+      - build
