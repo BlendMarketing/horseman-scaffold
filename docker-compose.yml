@@ -13,6 +13,7 @@ services:
     restart: always
     volumes:
       - .:/app:rw
+    command: yarn start
   styleguide:
     image: blendmarketing/styleguide
     ports:
@@ -20,5 +21,6 @@ services:
     restart: always
     environment:
       - VIRTUAL_HOST=styleguide.example.com
+    command: yarn styleguide
     volumes:
       - .:/app:rw

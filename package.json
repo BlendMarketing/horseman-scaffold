@@ -1,9 +1,11 @@
 {
   "main": "src/index.js",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --host 0.0.0.0",
+    "start": "webpack-dev-server --env.dev --inline --hot --host 0.0.0.0",
+    "build": "webpack --env.production",
     "styleguide": "styleguidist server",
+    "styleguide:build": "styleguidist build",
     "test": "karma start --single-run",
     "test-watch": "karma start --run-once",
     "lint": "eslint './src/**/*.js*'"
@@ -28,11 +30,13 @@
     "path": "^0.12.7",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
+    "react-document-meta": "^2.1.2",
     "react-dom": "^15.5.4",
     "react-hot-loader": "next",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.0",
     "react-router-redux": "next",
+    "react-typekit": "^1.1.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "styled-components": "^2.0.0",
@@ -65,5 +69,10 @@
     "redux-mock-store": "^1.2.3",
     "redux-test-utils": "^0.1.2",
     "sinon": "^2.1.0"
-  }
+  },
+  "name": "Sandstone Care",
+  "version": "1.0.0",
+  "description": "Homepage for Sandstone Care",
+  "repository": "git@github.com:BlendMarketing/new.sandstonecare.com.git",
+  "author": "Blend Marketing <blend.marketing>"
 }
