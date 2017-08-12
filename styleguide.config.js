@@ -1,7 +1,14 @@
 const path = require('path');
-const webpackConfig = require('./webpack.config.js');
+const annotationResolver = require('react-docgen-annotation-resolver').default;
+const defaultResolver = require('react-docgen').resolver.findAllExportedComponentDefinitions;
+const webpackConfig = require('./webpack.config.js')();
 
 module.exports = {
+  resolver: function (ast, recast) {
+    annotatedComponents = annotationResolver(ast, recast);
+    defaultComponents = defaultResolver(ast, recast);
+    return annotatedComponents.concat(defaultComponents);
+  },
   components: 'src/components/**/*.jsx',
   styleguideDir: './public/styleguide',
   sections: [
@@ -19,7 +26,7 @@ module.exports = {
     },
     {
       name: 'Layout',
-      components: 'src/components/layout/**/*.jsx',
+      components: 'src/components/layouts/**/*.jsx',
     },
   ],
   webpackConfig: Object.assign({}, webpackConfig, {

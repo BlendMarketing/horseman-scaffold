@@ -7,6 +7,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import createHistory from 'history/createBrowserHistory';
 import { ThemeProvider } from 'styled-components';
+import { ConnectedRouter } from 'react-router-redux';
 
 import theme from 'themes/main';
 
@@ -21,7 +22,9 @@ const store = configureStore(initialState, history);
 const Wrapper = ({ children }) => (
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      { children }
+      <ConnectedRouter history={history}>
+        { children }
+      </ConnectedRouter>
     </Provider>
   </ThemeProvider>
 );

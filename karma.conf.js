@@ -2,7 +2,7 @@
 
 // karma.conf.js
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.config.js');
+var webpackConfig = require('./webpack.config.js')();
 
 module.exports = function (config) {
     config.set({

@@ -1,93 +1,123 @@
-/**
- * This file represents the basic configuration that we will run to get our
- * bundle generated. It doesn't do anything by itself, but instead, returns a
- * function that takes an option parameter.
- *
- * Any changes/additions to this configuration should come in through the option
- * paramater.
- */
+/* eslint-disable func-names */
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+module.exports = function (env = { dev: true }) {
+  const entry = {
+    app: [path.join(__dirname, 'src/index.js')],
+  };
 
-module.exports = {
-  cache: true,
-  entry: {
-    app: [
-      'react-hot-loader/patch',
-      path.join(__dirname, 'src/index.js'),
-    ],
-  },
-  devtool: 'eval',
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
-      {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              hash: 'sha512',
-              digest: 'hex',
-              name: '[name]-[hash].[ext]',
-            },
-          },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              bypassOnDebug: true,
-              gifsicle: {
-                interlaced: false,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
-            },
-          },
-        ],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.webpack.js', '.js', '.json', '.jsx'],
-    modules: [
-      'node_modules',
-      path.resolve(__dirname, 'src'),
-    ],
-  },
-  plugins: [
+  /**
+   * If we are in development mode add the hot loader patch for react into the
+   * entrypoint
+   */
+  if (env.dev) {
+    entry.app.unshift('react-hot-loader/patch');
+  }
+
+  const basePlugins = [
     new HtmlWebpackPlugin({
+      /**
+       * In dev we want webpack-dev-server to serve up this file normally.
+       * in production we need to generated into public for nginx
+       */
+      filename: env.dev ? 'index.html' : path.join(__dirname, 'public/index.html'),
       inject: false,
       template: require('html-webpack-template'),
       appMountId: 'root',
       mobile: true,
-      links: [
-        'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700',
-      ],
+      minify: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+      },
     }),
-  ],
-  output: {
-    path: path.join(__dirname, 'public/bundle'),
-    publicPath: '/',
-    filename: '[name].bundle.js',
-    sourceMapFilename: '[file].map',
-  },
-  devServer: {
-    publicPath: '/',
-    host: '0.0.0.0',
-    disableHostCheck: true,
-    historyApiFallback: true,
-    port: 80,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
+  ];
+
+  /**
+   * Plugins intended for production use only
+   */
+  const prodPlugins = [
+    new webpack.optimize.UglifyJsPlugin({
+      comments: false,
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+  ];
+
+  const config = {
+    entry,
+    cache: true,
+    devtool: env.production ? 'source-map' : 'eval',
+    module: {
+      rules: [
+        {
+          test: /\.jsx?$/,
+          exclude: /node_modules/,
+          use: 'babel-loader',
+        },
+        {
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                hash: 'sha512',
+                digest: 'hex',
+                name: '[name]-[hash].[ext]',
+              },
+            },
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                bypassOnDebug: true,
+                gifsicle: {
+                  interlaced: false,
+                },
+                optipng: {
+                  optimizationLevel: 7,
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
-    watchOptions: {
-      poll: 1000,
+    resolve: {
+      extensions: ['.webpack.js', '.js', '.json', '.jsx'],
+      modules: [
+        'node_modules',
+        path.resolve(__dirname, 'src'),
+      ],
     },
-  },
+    plugins: env.dev ? basePlugins : basePlugins.concat(prodPlugins),
+    output: {
+      path: path.join(__dirname, 'public/bundle'),
+      publicPath: '/',
+      filename: '[hash].js',
+      sourceMapFilename: '[file].map',
+    },
+  };
+
+  /**
+   * Add the dev server configuration if we are in dev mode
+   */
+  if (env.dev) {
+    config.devServer = {
+      publicPath: '/',
+      host: '0.0.0.0',
+      disableHostCheck: true,
+      historyApiFallback: true,
+      port: 80,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      watchOptions: {
+        poll: 1000,
+      },
+    };
+  }
+
+  return config;
 };
