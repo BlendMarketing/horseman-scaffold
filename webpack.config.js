@@ -9,9 +9,9 @@ module.exports = function (env = { dev: true }) {
   };
 
   /**
-   * If we are in development mode add the hot loader patch for react into the
-   * entrypoint
-   */
+   *    * If we are in development mode add the hot loader patch for react into the
+   *       * entrypoint
+   *          */
   if (env.dev) {
     entry.app.unshift('react-hot-loader/patch');
   }
@@ -19,9 +19,9 @@ module.exports = function (env = { dev: true }) {
   const basePlugins = [
     new HtmlWebpackPlugin({
       /**
-       * In dev we want webpack-dev-server to serve up this file normally.
-       * in production we need to generated into public for nginx
-       */
+       *        * In dev we want webpack-dev-server to serve up this file normally.
+       *               * in production we need to generated into public for nginx
+       *                      */
       filename: env.dev ? 'index.html' : path.join(__dirname, 'public/index.html'),
       inject: false,
       template: require('html-webpack-template'),
@@ -35,8 +35,8 @@ module.exports = function (env = { dev: true }) {
   ];
 
   /**
-   * Plugins intended for production use only
-   */
+   *    * Plugins intended for production use only
+   *       */
   const prodPlugins = [
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
@@ -94,15 +94,15 @@ module.exports = function (env = { dev: true }) {
     plugins: env.dev ? basePlugins : basePlugins.concat(prodPlugins),
     output: {
       path: path.join(__dirname, 'public/bundle'),
-      publicPath: '/',
+      publicPath: '/bundle/',
       filename: '[hash].js',
       sourceMapFilename: '[file].map',
     },
   };
 
   /**
-   * Add the dev server configuration if we are in dev mode
-   */
+   *    * Add the dev server configuration if we are in dev mode
+   *       */
   if (env.dev) {
     config.devServer = {
       publicPath: '/',
