@@ -81,7 +81,7 @@
     "mocha": "^3.5.3",
     "prettier": "^1.7.0",
     "react-addons-test-utils": "^15.6.2",
-    "react-docgen": "github:jmeyering/react-docgen#v3-dev",
+    "react-docgen": "v3-dev",
     "react-docgen-annotation-resolver": "^1.0.0",
     "react-styleguidist": "^5.4.8",
     "react-test-renderer": "^16.0.0",
