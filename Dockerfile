@@ -1,10 +1,12 @@
-# From Custom NGINX Dockerfile
-# Set custom Root path
-# Set htpasswd file
-FROM nginx
-MAINTAINER Marc Tanis "marc@blendimc.com"
+FROM nginx:1.13-alpine
 
-# RUN echo  "blend:$apr1$cmz3pm27$80LgKKWS5zmPjTnbi8N7E/" >> /usr/share/ngin/.htpasswd
+MAINTAINER Marc Tanis <marc@blendimc.com>
 
-# Copy Files
-COPY public /usr/share/nginx/html
+COPY nginx-site.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /var/www
+
+RUN echo 'blend:$apr1$5yLGvD4P$NLvcfKVgb7JNIFp5HHHR9/' > /var/www/.htpasswd
+
+COPY public /var/www/public
+

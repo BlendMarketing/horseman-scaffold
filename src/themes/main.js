@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-expressions */
-import styledNormalize from 'styled-normalize';
-import { injectGlobal } from 'styled-components';
+import { normalize } from "polished";
+import { injectGlobal } from "styled-components";
 
 injectGlobal`
+  ${normalize()};
 
   html {
     box-sizing: border-box;
@@ -10,11 +11,14 @@ injectGlobal`
   *, *:before, *:after {
     box-sizing: inherit;
   }
-
-  ${styledNormalize}
 `;
 
+const baseColors = {};
+
 const theme = {
+  colors: {
+    ...baseColors,
+  },
 };
 
 export default theme;

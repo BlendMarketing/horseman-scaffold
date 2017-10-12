@@ -186,7 +186,7 @@ create_listener_rule(){
 
 
 create_targetgroup(){
-  if targetgrouparn=$(aws elbv2 create-target-group --name $targetname --protocol HTTP --port $lbport --vpc-id $vpc | $JQ '.TargetGroups[0].TargetGroupArn')
+  if targetgrouparn=$(aws elbv2 create-target-group --health-check-path /alb --name $targetname --protocol HTTP --port $lbport --vpc-id $vpc | $JQ '.TargetGroups[0].TargetGroupArn')
   then
     echo "Target Group Created"
     return 0;
@@ -223,3 +223,5 @@ check_registry
 push_ecr_image
 register_definition
 register_service
+
+
