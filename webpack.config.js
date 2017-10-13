@@ -9,9 +9,9 @@ module.exports = function(env = { dev: true }) {
   };
 
   /**
-   *    * If we are in development mode add the hot loader patch for react into the
-   *       * entrypoint
-   *          */
+   * If we are in development mode add the hot loader patch for react into the
+   * entrypoint
+   */
   if (env.dev) {
     entry.app.unshift("react-hot-loader/patch");
   }
@@ -37,8 +37,8 @@ module.exports = function(env = { dev: true }) {
   ];
 
   /**
-   *    * Plugins intended for production use only
-   *       */
+   * Plugins intended for production use only
+   */
   const prodPlugins = [
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
@@ -92,8 +92,8 @@ module.exports = function(env = { dev: true }) {
   };
 
   /**
-   *    * Add the dev server configuration if we are in dev mode
-   *       */
+   * Add the dev server configuration if we are in dev mode
+   */
   if (env.dev) {
     config.devServer = {
       publicPath: "/",
