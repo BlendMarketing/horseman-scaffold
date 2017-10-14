@@ -13,7 +13,6 @@ jobs:
           docker create -v /app --name appdata alpine:3.4 /bin/true
           docker cp . appdata:/app
           docker run --volumes-from appdata blendmarketing/webpack yarn install
-          docker run --volumes-from appdata blendmarketing/webpack yarn shim
           docker run --volumes-from appdata blendmarketing/webpack yarn build
           docker run --volumes-from appdata blendmarketing/webpack yarn styleguide:build
       - run: |

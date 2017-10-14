@@ -3,7 +3,7 @@
 
 # Can only have [a-z\-]
 CONTAINERNAME="example"
-DOMAIN_BASE="example.com"
+DOMAIN_BASE=""
 
 # Defaults
 cluster="blend-staging-east"

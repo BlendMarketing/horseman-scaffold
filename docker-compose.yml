@@ -5,7 +5,7 @@ networks:
       name: dockerbox
 services:
   webpack:
-    image: node.example.com
+    image: node.
     ports:
       - 80
     environment:

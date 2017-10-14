@@ -3,7 +3,6 @@ MAINTAINER Marc Tanis "marc@blendimc.com"
 
 COPY package.json /app/package.json
 COPY yarn.lock /app/yarn.lock
-COPY shim.sh /app/shim.sh
-RUN cd /app && yarn shim
+RUN cd /app && yarn install
 
 COPY . /app
