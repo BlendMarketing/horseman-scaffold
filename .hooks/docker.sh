@@ -11,5 +11,5 @@ if [ -z "$CHANGED" ]; then
     exit 0
 fi
 
-docker build -f Dockerfile-local -t node.example.com .
+docker build -f Dockerfile-local -t webpack.{containerName} .
 docker-compose down && docker-compose up -d

@@ -5,22 +5,22 @@ networks:
       name: dockerbox
 services:
   webpack:
-    image: node.
+    image: webpack.{containerName}
     ports:
       - 80
     environment:
-      - VIRTUAL_HOST=example.com
+      - VIRTUAL_HOST={devDomain}
     restart: unless-stopped
     volumes:
       - ./src:/app/src:delegated
     command: yarn start
   styleguide:
-    image: node.example.com
+    image: webpack.{containerName}
     ports:
       - 6060
     restart: unless-stopped
     environment:
-      - VIRTUAL_HOST=styleguide.example.com
+      - VIRTUAL_HOST=styleguide.{devDomain}
       - VIRTUAL_PORT=6060
     volumes:
       - ./src:/app/src:delegated
